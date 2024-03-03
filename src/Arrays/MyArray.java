@@ -1,7 +1,7 @@
 package Arrays;
 
 public class MyArray {
-    private final int [] arr;
+    private int [] arr;
     private int index;
 
 
@@ -12,7 +12,17 @@ public class MyArray {
 
 
     public void insert(int value){
-        this.arr[index] = value;
+        if(this.index == this.arr.length){
+            int [] temp = new int[this.arr.length * 2];
+
+            for(int i=0; i<this.arr.length; i++){
+                temp[i] = this.arr[i];
+            }
+
+            this.arr = temp;
+        }
+
+        this.arr[this.index] = value;
         index++;
     }
 
