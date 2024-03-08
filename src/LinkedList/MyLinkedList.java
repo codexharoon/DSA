@@ -64,6 +64,24 @@ public class MyLinkedList {
         newNode.next = current;
     }
 
+    public void reverse(){
+        if(isEmpty() || head.next == null) return;
+
+        Node prev = null;
+        Node current = head;
+        Node next = head.next;
+
+        while(next != null){
+            current.next = prev;
+            prev = current;
+            current = next;
+            next = next.next;
+        }
+
+        current.next = prev;
+        head = current;
+    }
+
     public int indexOf(int value){
         Node current = head;
         int index = 0;
@@ -111,6 +129,9 @@ public class MyLinkedList {
         System.out.println(l.indexOf(4));
 
         l.insertAt(999,0);
+        System.out.println(l);
+
+        l.reverse();
         System.out.println(l);
     }
 
