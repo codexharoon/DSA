@@ -13,22 +13,51 @@ class Node{
 
 
 public class MyLinkedList {
-    private Node head, tail = null;
+    private Node head = null;
+//    private Node tail = null;
 
     public boolean isEmpty(){
-        return head == null && tail == null;
+        return head == null /*&& tail == null*/;
     }
 
     public void insert(int value){
         Node newNode = new Node(value);
 
         if(head == null){
-            head = tail = newNode;
+            head = newNode;
+//            head = tail = newNode;
         }
         else{
-            tail.next = newNode;
-            tail = newNode;
+//            tail.next = newNode;
+//            tail = newNode;
+
+            Node current = head;
+
+            while(current.next != null){
+                current = current.next;
+            }
+
+            current.next = newNode;
         }
+    }
+
+    public void remove(){
+        if(isEmpty()) return;
+        if(head.next == null){
+            removeHead();
+            return;
+        }
+
+        Node prev = null;
+        Node current = head;
+
+        while(current.next != null){
+            prev = current;
+            current = current.next;
+        }
+
+        prev.next = null;
+//        tail = prev;
     }
 
     public void insertHead(int value){
@@ -40,6 +69,19 @@ public class MyLinkedList {
 
         newNode.next = head;
         head = newNode;
+    }
+
+    public void removeHead(){
+        if(isEmpty()) return;
+
+//        if(head.next == null){
+//            head = tail = null;
+//        }
+
+        Node temp = head;
+        head = head.next;
+
+        temp.next = null;
     }
 
     public void insertAt(int value,int pos){
@@ -62,6 +104,34 @@ public class MyLinkedList {
 
         prev.next = newNode;
         newNode.next = current;
+    }
+
+
+    public void removeAt(int pos){
+        if(isEmpty()) return;
+
+        if(pos == 0){
+            removeHead();
+            return;
+        }
+
+        Node prev = null;
+        Node current = head;
+
+        while(current != null && pos > 0){
+            prev = current;
+            current = current.next;
+            pos--;
+        }
+
+        prev.next = current.next;
+
+        current.next = null;
+
+//        if(current.next == null){
+//            tail = prev;
+//        }
+
     }
 
     public void reverse(){
@@ -131,7 +201,32 @@ public class MyLinkedList {
         l.insertAt(999,0);
         System.out.println(l);
 
-        l.reverse();
+//        l.reverse();
+//        System.out.println(l);
+
+        l.insert(8888);
+        System.out.println(l);
+
+        l.removeHead();
+        l.removeHead();
+        System.out.println(l);
+
+        l.removeAt(1);
+        System.out.println(l);
+
+        l.remove();
+        System.out.println(l);
+
+        l.insert(1212);
+        System.out.println(l);
+
+        l.removeAt(5);
+        l.insert(111);
+
+        System.out.println(l);
+
+        l.insertAt(9090,6);
+        l.insert(9091);
         System.out.println(l);
     }
 
