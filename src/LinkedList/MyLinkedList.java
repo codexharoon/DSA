@@ -134,6 +134,41 @@ public class MyLinkedList {
 
     }
 
+    public void removeNthFromLast(int n){
+        if(isEmpty()) return;
+
+        Node current = head;
+        int count = 0;
+
+        while(current != null){
+            count++;
+            current = current.next;
+        }
+
+        Node prev = null;
+        current = head;
+
+        int nth = count - n;
+
+        while(current != null && nth > 0){
+            prev = current;
+            current = current.next;
+
+            nth--;
+        }
+
+        if(prev == null){
+            Node temp = head;
+            head = head.next;
+
+            temp.next = null;
+            return;
+        }
+
+        prev.next = current.next;
+        current.next = null;
+    }
+
     public void reverse(){
         if(isEmpty() || head.next == null) return;
 
@@ -145,11 +180,29 @@ public class MyLinkedList {
             current.next = prev;
             prev = current;
             current = next;
+
             next = next.next;
         }
 
         current.next = prev;
         head = current;
+    }
+
+
+    public Node reverseRec(Node head){
+        if(head == null || head.next == null) return head;
+
+        Node rest = reverseRec(head.next);
+
+        Node next = head.next;
+        next.next = head;
+        head.next = null;
+
+        return rest;
+    }
+
+    public void reverseRec(){
+        head = reverseRec(head);
     }
 
     public int indexOf(int value){
@@ -165,6 +218,21 @@ public class MyLinkedList {
         }
 
         return -1;
+    }
+
+
+    public void display(Node head){
+        if(head == null) return;
+
+        System.out.print(head.data);
+        if(head.next != null) System.out.print(" -> ");
+
+        display(head.next);
+    }
+
+
+    public void display(){
+        display(head);
     }
 
     public String toString(){
@@ -228,6 +296,16 @@ public class MyLinkedList {
         l.insertAt(9090,6);
         l.insert(9091);
         System.out.println(l);
+
+        l.removeNthFromLast(2);
+        l.removeNthFromLast(1);
+        l.removeNthFromLast(6);
+        System.out.println(l);
+
+
+        l.reverseRec();
+        System.out.println(l);
+        l.display();
     }
 
 }
