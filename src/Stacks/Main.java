@@ -10,6 +10,8 @@ public class Main {
         stack.push(20);
         stack.push(30);
 
+        System.out.println(stack);
+
         System.out.println("Peek Element --> " + stack.peek());
 
 //        System.out.println(stack.pop());
