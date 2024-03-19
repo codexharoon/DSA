@@ -1,5 +1,7 @@
 package Stacks;
 
+import java.util.EmptyStackException;
+
 public class MyStack {
     // fields
     private int [] arr;
@@ -20,10 +22,7 @@ public class MyStack {
 
     // push
     public void push(int value){
-        if(this.top == this.size){
-            System.out.println("Stack is Full!");
-            return;
-        }
+        if(this.top == this.size) throw new StackOverflowError();
 
         arr[top] = value;
         top++;
@@ -31,10 +30,7 @@ public class MyStack {
 
     // pop
     public int pop(){
-        if(isEmpty()){
-            System.out.println("Stack is Empty!");
-            return -1;
-        }
+        if(isEmpty()) throw new EmptyStackException();
 
         top--;
         int res =  arr[top];
@@ -45,17 +41,23 @@ public class MyStack {
 
     // size
     public int size(){
-        if(isEmpty()){
-            System.out.println("Stack is Empty!");
-            return -1;
-        }
+        if(isEmpty()) throw new EmptyStackException();
+
         return top;
+    }
+
+
+    // peek
+    public int peek(){
+        if(isEmpty()) throw new EmptyStackException();
+
+        return arr[top - 1];
     }
 
     // toString
     public String toString(){
         if(isEmpty()){
-            return "Stack is Empty!\n";
+            return "[]";
         }
 
         StringBuilder builder = new StringBuilder();
@@ -80,16 +82,14 @@ public class MyStack {
 
         System.out.println(stack);
 
-        stack.pop();
+        System.out.println(stack.peek());
 
-        System.out.println(stack);
         stack.pop();
-        stack.pop();
-
         System.out.println(stack);
 
-
-
+        stack.pop();
+        stack.pop();
+        System.out.println(stack);
 
     }
 }
