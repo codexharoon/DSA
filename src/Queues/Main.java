@@ -2,6 +2,7 @@ package Queues;
 
 import java.util.ArrayDeque;
 import java.util.Queue;
+import java.util.Stack;
 
 public class Main {
     public static void main(String[] args){
@@ -26,10 +27,17 @@ public class Main {
 
         System.out.println(queue);
 
-        System.out.println(queue.poll());
-        System.out.println(queue.poll());
-        System.out.println(queue.poll());
-        System.out.println(queue.poll());
+
+        // reverse queue using stack
+        Stack<Integer> stack = new Stack<>();
+
+        while(!queue.isEmpty()){
+            stack.push(queue.poll());
+        }
+
+        while(!stack.isEmpty()){
+            queue.offer(stack.pop());
+        }
 
         System.out.println(queue);
     }
