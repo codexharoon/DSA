@@ -43,6 +43,32 @@ public class MyQueue {
     }
 
 
+    public int Front() {
+        if(isEmpty()) return -1;
+
+        return arr[(front + 1) % size];
+    }
+
+    public int Rear() {
+        if(isEmpty()) return -1;
+
+        int lastIndex = (rear - 1) % size;
+        if(lastIndex == -1){
+            lastIndex = size - 1;
+        }
+
+        return arr[lastIndex];
+    }
+
+    public boolean isEmpty() {
+        return count == 0;
+    }
+
+    public boolean isFull() {
+        return count == size;
+    }
+
+
     public String toString(){
         return Arrays.toString(arr);
     }
@@ -80,5 +106,25 @@ public class MyQueue {
         queue.enqueue(99);
 
         System.out.println(queue);
+
+
+        //
+
+        System.out.println("test....");
+        queue.enqueue(1);
+        queue.enqueue(2);
+        queue.enqueue(3);
+
+        System.out.println(queue);
+
+        System.out.println(queue.dequeue());
+        System.out.println(queue.dequeue());
+
+        queue.enqueue(4);
+
+        System.out.println(queue);
+
+        System.out.println(queue.Front());
+
     }
 }
