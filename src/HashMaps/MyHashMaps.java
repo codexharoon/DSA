@@ -49,6 +49,41 @@ public class MyHashMaps {
         bucket.addLast(new Entry(key,value));
     }
 
+
+    public String get(int key){
+        int index = hashFun(key);
+
+        if(list[index] == null) throw new IllegalArgumentException();
+
+        var bucket = list[index];
+
+        for(var entry : bucket){
+            if(entry.key == key){
+                return entry.value;
+            }
+        }
+
+        throw new IllegalArgumentException();
+    }
+
+
+    public String remove(int key){
+        int index = hashFun(key);
+
+        if(list[index] == null) throw new IllegalArgumentException();
+
+        var bucket = list[index];
+
+        for(var entry : bucket){
+            if(entry.key == key){
+                bucket.remove(entry);
+                return entry.value;
+            }
+        }
+
+        throw new IllegalArgumentException();
+    }
+
     public String toString(){
         return Arrays.toString(list);
     }
@@ -61,6 +96,12 @@ public class MyHashMaps {
         map.put(1,"Haroon");
         map.put(3,"Code x Haroon");
         map.put(6,"Jarvis");
+
+        System.out.println(map);
+
+        map.put(7,"XYZ");
+        System.out.println(map.get(6));
+        System.out.println(map.remove(7));
 
         System.out.println(map);
     }
