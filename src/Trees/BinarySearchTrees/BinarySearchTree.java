@@ -38,7 +38,23 @@ public class BinarySearchTree {
         return root;
     }
 
+    private int find(Node root,int value){
+        if(root == null) return -1;
+
+        if(value == root.data) return 1;
+        else if(value <= root.data){
+            return find(root.left,value);
+        }
+        else {
+            return find(root.right, value);
+        }
+    }
+
     public void insert(int value){
         root = insert(root,value);
+    }
+
+    public int find(int value){
+        return find(root,value);
     }
 }

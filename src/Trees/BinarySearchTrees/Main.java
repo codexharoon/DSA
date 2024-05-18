@@ -12,5 +12,7 @@ public class Main {
         bst.insert(5);
         bst.insert(10);
 
+        System.out.println(bst.find(10));
+
     }
 }
