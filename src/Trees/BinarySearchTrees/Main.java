@@ -14,5 +14,16 @@ public class Main {
 
         System.out.println(bst.find(10));
 
+        System.out.println("-----------------------------");
+
+        BinarySearchTree t = new BinarySearchTree();
+        int [] items = new int[] {12,4,14,1,2,13,15};
+
+        for(int i : items){
+            t.insert(i);
+        }
+
+        t.preOrderTraversal();
+
     }
 }
