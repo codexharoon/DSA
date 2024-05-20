@@ -17,13 +17,18 @@ public class Main {
         System.out.println("-----------------------------");
 
         BinarySearchTree t = new BinarySearchTree();
-        int [] items = new int[] {12,4,14,1,2,13,15};
+        int [] items = new int[] {12,4,14,1,8,13,15};
 
         for(int i : items){
             t.insert(i);
         }
 
+        System.out.println("Pre Order: ");
         t.preOrderTraversal();
+        System.out.println();
+
+        System.out.println("In Order: ");
+        t.inOrderTraversal();
 
     }
 }
