@@ -29,6 +29,10 @@ public class Main {
 
         System.out.println("In Order: ");
         t.inOrderTraversal();
+        System.out.println();
+
+        System.out.println("Post Order: ");
+        t.postOrderTraversal();
 
     }
 }

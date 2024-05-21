@@ -69,6 +69,14 @@ public class BinarySearchTree {
         inOrderTraversal(root.right);
     }
 
+    private void postOrderTraversal(Node root){
+        if(root == null) return;
+
+        postOrderTraversal(root.left);
+        postOrderTraversal(root.right);
+        System.out.print(root.data+ " ");
+    }
+
     public void insert(int value){
         root = insert(root,value);
     }
@@ -83,6 +91,9 @@ public class BinarySearchTree {
 
     public void inOrderTraversal(){
         inOrderTraversal(root);
+    }
+    public void postOrderTraversal(){
+        postOrderTraversal(root);
     }
 
 
