@@ -77,6 +77,14 @@ public class BinarySearchTree {
         System.out.print(root.data+ " ");
     }
 
+    private int dept(Node root,int value,int dept){
+        if(root == null) return -1;
+
+        if(root.data == value) return dept;
+        else if(value <= root.data) return dept(root.left,value,dept + 1);
+        else return dept(root.right,value,dept+1);
+    }
+
     public void insert(int value){
         root = insert(root,value);
     }
@@ -94,6 +102,10 @@ public class BinarySearchTree {
     }
     public void postOrderTraversal(){
         postOrderTraversal(root);
+    }
+
+    public int getDept(int value){
+        return dept(root,value,0);
     }
 
 

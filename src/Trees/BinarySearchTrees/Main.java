@@ -33,6 +33,11 @@ public class Main {
 
         System.out.println("Post Order: ");
         t.postOrderTraversal();
+        System.out.println();
+
+        System.out.println("-------------------------------");
+
+        System.out.println(t.getDept(1));
 
     }
 }
