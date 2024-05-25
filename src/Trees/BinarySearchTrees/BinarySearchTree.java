@@ -85,6 +85,22 @@ public class BinarySearchTree {
         else return dept(root.right,value,dept+1);
     }
 
+    private int getHeightOfTree(Node root){
+        if(root == null) return -1;
+
+        if(root.left == null && root.right == null) return 0;
+
+        return Math.max(getHeightOfTree(root.left),getHeightOfTree(root.right)) + 1;
+    }
+
+    private int getHeightOfTreeNode(Node root,int value){
+        if(root == null) return -1;
+
+        if(root.data == value) return getHeightOfTree(root);
+        else if(value <= root.data) return getHeightOfTreeNode(root.left,value);
+        else return getHeightOfTreeNode(root.right,value);
+    }
+
     public void insert(int value){
         root = insert(root,value);
     }
@@ -108,5 +124,12 @@ public class BinarySearchTree {
         return dept(root,value,0);
     }
 
+    public int getHeight(){
+        return getHeightOfTree(root);
+    }
+
+    public int getNodeHeight(int value){
+        return getHeightOfTreeNode(root,value);
+    }
 
 }

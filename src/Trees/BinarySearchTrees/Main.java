@@ -39,5 +39,10 @@ public class Main {
 
         System.out.println(t.getDept(1));
 
+        System.out.println("-------------------------------");
+
+        System.out.println(t.getHeight());
+        System.out.println(t.getNodeHeight(1));
+
     }
 }
