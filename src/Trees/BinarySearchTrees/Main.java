@@ -44,5 +44,7 @@ public class Main {
         System.out.println(t.getHeight());
         System.out.println(t.getNodeHeight(1));
 
+        System.out.println("Minimum vakue is: " + t.getMin());
+
     }
 }

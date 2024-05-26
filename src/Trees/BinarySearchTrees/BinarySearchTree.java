@@ -101,6 +101,16 @@ public class BinarySearchTree {
         else return getHeightOfTreeNode(root.right,value);
     }
 
+    private Node getMin(Node root){
+        if(root == null) return null;
+
+        if(root.left == null) return root;
+
+        return getMin(root.left);
+
+
+    }
+
     public void insert(int value){
         root = insert(root,value);
     }
@@ -130,6 +140,10 @@ public class BinarySearchTree {
 
     public int getNodeHeight(int value){
         return getHeightOfTreeNode(root,value);
+    }
+
+    public Node getMin(){
+        return getMin(root);
     }
 
 }
