@@ -111,6 +111,15 @@ public class BinarySearchTree {
 
     }
 
+    private boolean checkEquality(Node r1,Node r2){
+        if(r1 == null && r2 == null) return true;
+
+        if(r1 == null) return false;
+        if(r2 == null) return false;
+
+        return r1.data == r2.data && checkEquality(r1.left,r2.left) && checkEquality(r1.right,r2.right);
+    }
+
     public void insert(int value){
         root = insert(root,value);
     }
@@ -144,6 +153,10 @@ public class BinarySearchTree {
 
     public Node getMin(){
         return getMin(root);
+    }
+
+    public boolean checkEquality(BinarySearchTree r2){
+        return checkEquality(root,r2.root);
     }
 
 }

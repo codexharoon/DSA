@@ -46,5 +46,16 @@ public class Main {
 
         System.out.println("Minimum vakue is: " + t.getMin());
 
+
+        BinarySearchTree t1 = new BinarySearchTree();
+        BinarySearchTree t2 = new BinarySearchTree();
+        for(int i : items){
+            t1.insert(i);
+            t2.insert(i);
+        }
+        t2.insert(77);
+
+        System.out.println(t1.checkEquality(t2));
+
     }
 }
