@@ -44,7 +44,7 @@ public class Main {
         System.out.println(t.getHeight());
         System.out.println(t.getNodeHeight(1));
 
-        System.out.println("Minimum vakue is: " + t.getMin());
+        System.out.println("Minimum value is: " + t.getMin());
 
 
         BinarySearchTree t1 = new BinarySearchTree();
@@ -56,6 +56,8 @@ public class Main {
         t2.insert(77);
 
         System.out.println(t1.checkEquality(t2));
+
+        System.out.println(t.NodesAtK(2));
 
     }
 }

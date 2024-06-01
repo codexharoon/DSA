@@ -1,5 +1,8 @@
 package Trees.BinarySearchTrees;
 
+import java.util.ArrayList;
+import java.util.List;
+
 class Node{
     int data;
     Node left;
@@ -120,6 +123,17 @@ public class BinarySearchTree {
         return r1.data == r2.data && checkEquality(r1.left,r2.left) && checkEquality(r1.right,r2.right);
     }
 
+    private void NodesAtK(Node root, int k, List<Integer> res){
+        if(root == null) return;
+        if(k == 0 ) {
+            res.add(root.data);
+            return;
+        }
+
+        NodesAtK(root.left,k-1,res);
+        NodesAtK(root.right,k-1,res);
+    }
+
     public void insert(int value){
         root = insert(root,value);
     }
@@ -157,6 +171,13 @@ public class BinarySearchTree {
 
     public boolean checkEquality(BinarySearchTree r2){
         return checkEquality(root,r2.root);
+    }
+
+    public List<Integer> NodesAtK(int k ){
+        List<Integer> res = new ArrayList<>();
+        NodesAtK(root,k,res);
+
+        return res;
     }
 
 }
