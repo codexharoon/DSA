@@ -59,5 +59,9 @@ public class Main {
 
         System.out.println(t.NodesAtK(2));
 
+
+        System.out.println("Level Order Traversal");
+        System.out.println(t.levelOrderTraversal());
+
     }
 }
