@@ -43,6 +43,21 @@ public class AvlTrees {
         return bf >= -1 && bf <= 1;
     }
 
+    private boolean isLeftHeavy(Node root){
+        if(root == null) return false;
+
+        int bf = getBalanceFactor(root);
+        return bf > 1;
+    }
+
+
+    private boolean isRightHeavy(Node root){
+        if(root == null) return false;
+
+        int bf = getBalanceFactor(root);
+        return bf < -1;
+    }
+
     private Node insert(Node root,int value){
             if(root == null) return new Node(value);
 
@@ -59,6 +74,12 @@ public class AvlTrees {
 
             if(!isBalanced(root)){
                 System.out.println("Imbalance at node = " + root.data);
+                if(isLeftHeavy(root)){
+                    System.out.println("Do right rotation!");
+                }
+                else if(isRightHeavy(root)){
+                    System.out.println("Do left rotation!");
+                }
             }
 
 
