@@ -74,11 +74,22 @@ public class AvlTrees {
 
             if(!isBalanced(root)){
                 System.out.println("Imbalance at node = " + root.data);
+
                 if(isLeftHeavy(root)){
-                    System.out.println("Do right rotation!");
+
+                    if(getBalanceFactor(root.left) < 0){
+                    System.out.println("Do left rotation! at node "+root.left.data);
+                    }
+
+                    System.out.println("Do right rotation! at node "+root.data);
                 }
                 else if(isRightHeavy(root)){
-                    System.out.println("Do left rotation!");
+
+                    if(getBalanceFactor(root.right) > 0){
+                    System.out.println("Do right rotation! at node "+root.right.data);
+                    }
+
+                    System.out.println("Do left rotation! at node "+root.data);
                 }
             }
 
