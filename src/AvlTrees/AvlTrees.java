@@ -58,6 +58,28 @@ public class AvlTrees {
         return bf < -1;
     }
 
+
+    private Node leftRotation(Node root){
+        if(root == null) return null;
+
+        Node newRoot = root.right;
+        root.right = newRoot.left;
+        newRoot.left = root;
+
+        return newRoot;
+    }
+
+
+    private Node rightRotation(Node root){
+        if(root == null) return null;
+
+        Node newRoot = root.left;
+        root.left = newRoot.right;
+        newRoot.right = root;
+
+        return newRoot;
+    }
+
     private Node insert(Node root,int value){
             if(root == null) return new Node(value);
 
@@ -73,23 +95,27 @@ public class AvlTrees {
             root.height = Math.max(getHeight(root.left),getHeight(root.right)) + 1;
 
             if(!isBalanced(root)){
-                System.out.println("Imbalance at node = " + root.data);
+//                System.out.println("Imbalance at node = " + root.data);
 
                 if(isLeftHeavy(root)){
 
                     if(getBalanceFactor(root.left) < 0){
-                    System.out.println("Do left rotation! at node "+root.left.data);
+//                    System.out.println("Do left rotation! at node "+root.left.data);
+                        root.left = leftRotation(root.left);
                     }
 
-                    System.out.println("Do right rotation! at node "+root.data);
+//                    System.out.println("Do right rotation! at node "+root.data);
+                    root = rightRotation(root);
                 }
                 else if(isRightHeavy(root)){
 
                     if(getBalanceFactor(root.right) > 0){
-                    System.out.println("Do right rotation! at node "+root.right.data);
+//                    System.out.println("Do right rotation! at node "+root.right.data);
+                       root.right = rightRotation(root.right);
                     }
 
-                    System.out.println("Do left rotation! at node "+root.data);
+//                    System.out.println("Do left rotation! at node "+root.data);
+                    root = leftRotation(root);
                 }
             }
 
