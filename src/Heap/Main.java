@@ -10,6 +10,17 @@ public class Main {
             heap.insert(num);
         }
 
+        System.out.println(heap.remove());
+        System.out.println(heap.remove());
+        System.out.println(heap.remove());
+
+        heap.insert(1);
+        heap.insert(19);
+
+        System.out.println(heap.remove());
+        System.out.println(heap.remove());
+        System.out.println(heap.remove());
+
         System.out.println("Done!");
     }
 }
