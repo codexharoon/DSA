@@ -1,6 +1,8 @@
 package Tries;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 class Node {
@@ -27,6 +29,10 @@ class Node {
         return children.get(ch);
     }
 
+    public Node[] getChildren(){
+        return children.values().toArray(new Node[0]);
+    }
+
     public String toString(){
         return ""+this.value;
     }
@@ -51,5 +57,32 @@ public class Tries {
         }
 
         c.isEndOfWord = true;
+    }
+
+
+    private Node getLastNode(Node root,String prefix,int index){
+        if(index == prefix.length()){
+            return root;
+        }
+
+        return getLastNode(root.getChild(prefix.charAt(index)),prefix,index + 1);
+    }
+
+    private void searchForChildren(Node root,String prefix,List<String> result){
+        if(root == null) return;
+        if(root.isEndOfWord) result.add(prefix);
+
+        for(Node child : root.getChildren()){
+            searchForChildren(child,prefix+child.value,result);
+        }
+    }
+
+    public List<String> autoComplete(String prefix){
+        List<String> result = new ArrayList<>();
+
+        Node startingPoint = getLastNode(root,prefix,0);
+
+        searchForChildren(startingPoint,prefix,result);
+        return result;
     }
 }

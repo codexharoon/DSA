@@ -1,12 +1,17 @@
 package Tries;
 
+
+
 public class Main {
     public static void main(String[] args){
         Tries tries = new Tries();
 
-        tries.insert("car");
-        tries.insert("carpet");
+        String[] words = new String[]{"car","carpet","carpool","bag","baggage","ball","cat",};
 
-        System.out.println("done");
+        for(String word : words){
+            tries.insert(word);
+        }
+
+        System.out.println(tries.autoComplete("ca"));
     }
 }
