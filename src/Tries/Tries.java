@@ -33,6 +33,10 @@ class Node {
         return children.values().toArray(new Node[0]);
     }
 
+    public void removeChild(Node node){
+        children.remove(node.value);
+    }
+
     public String toString(){
         return ""+this.value;
     }
@@ -84,5 +88,27 @@ public class Tries {
 
         searchForChildren(startingPoint,prefix,result);
         return result;
+    }
+
+
+    private void remove(Node root,String word, int index){
+        if(root == null) return;
+        if(index == word.length()){
+            root.isEndOfWord = false;
+            return;
+        }
+
+        Node current = root.getChild(word.charAt(index));
+        if(current == null) return;
+
+        remove(current,word,index + 1);
+
+        if(current.getChildren().length == 0 && !current.isEndOfWord){
+            root.removeChild(current);
+        }
+    }
+
+    public void remove(String word){
+        remove(root,word,0);
     }
 }

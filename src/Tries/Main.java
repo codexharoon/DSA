@@ -12,6 +12,8 @@ public class Main {
             tries.insert(word);
         }
 
-        System.out.println(tries.autoComplete("ca"));
+        tries.remove("baggage");
+
+        System.out.println(tries.autoComplete("bag"));
     }
 }
