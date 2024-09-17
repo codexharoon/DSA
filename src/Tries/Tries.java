@@ -111,4 +111,27 @@ public class Tries {
     public void remove(String word){
         remove(root,word,0);
     }
+
+
+    private void getLongestCommonPrefix(Node root,StringBuilder result){
+        if(root.value != ' '){
+            result.append(root.value);
+        }
+
+        if(root.getChildren().length != 1 || root.isEndOfWord)return;
+
+        for(Node child : root.getChildren()){
+            getLongestCommonPrefix(child,result);
+        }
+    }
+
+
+    public String getLongestCommonPrefix(){
+        if(root.getChildren().length > 1) return "";
+
+        StringBuilder result = new StringBuilder();
+        getLongestCommonPrefix(root,result);
+
+        return result.toString();
+    }
 }
