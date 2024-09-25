@@ -1,9 +1,6 @@
 package Graph;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Graph {
 
@@ -54,6 +51,32 @@ public class Graph {
         if(direction == GRAPH_DIRECTION.UNDIRECTED){
             list.get(to).add(from);
         }
+    }
+
+
+    public List<Node> getBFS(Node start){
+        Queue<Node> q = new LinkedList<>();
+        Set<Node> visited = new HashSet<>();
+
+        List<Node> result  = new ArrayList<>();
+
+        q.add(start);
+        visited.add(start);
+
+        while(!q.isEmpty()){
+            Node ele = q.poll();
+
+            result.add(ele);
+
+            for(Node child : this.list.get(ele)){
+                if(!visited.contains(child)){
+                    q.add(child);
+                    visited.add(child);
+                }
+            }
+        }
+
+        return result;
     }
 
     public String toString(){
