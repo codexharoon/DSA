@@ -21,5 +21,7 @@ public class Main {
         System.out.println(graph);
 
         System.out.println(graph.getBFS(A));
+
+        System.out.println(graph.getDFS(A));
     }
 }

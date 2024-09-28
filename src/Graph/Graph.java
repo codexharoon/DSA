@@ -79,6 +79,28 @@ public class Graph {
         return result;
     }
 
+
+    private void getDFSRec(Node node , Set<Node> visited, List<Node> result){
+        if(node == null) return;
+
+        result.add(node);
+        visited.add(node);
+
+        for(Node child : list.get(node)){
+            if(!visited.contains(child))
+                getDFSRec(child,visited,result);
+        }
+}
+
+    public List<Node> getDFS(Node start){
+        List<Node> result = new ArrayList<>();
+        Set<Node> visited = new HashSet<>();
+
+        getDFSRec(start,visited,result);
+
+        return result;
+    }
+
     public String toString(){
         StringBuilder sb = new StringBuilder();
 
