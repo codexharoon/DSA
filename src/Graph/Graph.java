@@ -101,6 +101,44 @@ public class Graph {
         return result;
     }
 
+
+    private boolean hasCycle(Node node,Set<Node> visiting, Set<Node> visited){
+        visiting.add(node);
+
+        if(list.containsKey(node)){
+            for(var child : list.get(node)){
+                if(visiting.contains(child)) return true;
+
+                if( hasCycle(child,visiting,visited)) return true;
+            }
+        }
+
+        visiting.remove(node);
+        visited.add(node);
+
+        return false;
+
+    }
+
+
+    public boolean hasCycle(){
+        List<Node> all = new ArrayList<>();
+        Set<Node> visiting = new HashSet<>();
+        Set<Node> visited = new HashSet<>();
+
+        for(var entry : nodes.entrySet()){
+            all.add(entry.getValue());
+        }
+
+        for(Node n : all){
+            if(!visited.contains(n)){
+                if(hasCycle(n,visiting,visited)) return true;
+            }
+        }
+
+        return false;
+    }
+
     public String toString(){
         StringBuilder sb = new StringBuilder();
 
