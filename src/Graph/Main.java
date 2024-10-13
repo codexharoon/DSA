@@ -31,5 +31,7 @@ public class Main {
         System.out.println(graph.getDFS(A));
 
         System.out.println(graph.hasCycle());
+
+
     }
 }

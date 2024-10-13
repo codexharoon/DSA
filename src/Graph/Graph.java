@@ -7,8 +7,21 @@ public class Graph {
     private class Node{
         public String value;
 
+        private List<Node> edges;
+
+        public void addNode(Node node){
+            if(this.edges.contains(node))return;
+
+            this.edges.add(node);
+        }
+
+        public List<Node> getChildren(){
+            return this.edges;
+        }
+
         public Node(String value){
             this.value = value;
+            this.edges = new ArrayList<>();
         }
 
         public String toString(){
@@ -21,11 +34,9 @@ public class Graph {
         UNDIRECTED,
     }
 
-    private Map<Node, List<Node>> list;
     private Map<String,Node> nodes;
 
     public Graph(){
-        list = new HashMap<>();
         nodes = new HashMap<>();
     }
 
@@ -38,18 +49,11 @@ public class Graph {
     }
 
     public void createConnection(Node from, Node to, GRAPH_DIRECTION direction){
-        if(!list.containsKey(from)){
-            list.put(from,new ArrayList<>());
-        }
 
-        if(!list.containsKey(to)){
-            list.put(to,new ArrayList<>());
-        }
-
-        list.get(from).add(to);
+        from.addNode(to);
 
         if(direction == GRAPH_DIRECTION.UNDIRECTED){
-            list.get(to).add(from);
+            to.addNode(from);
         }
     }
 
@@ -68,7 +72,7 @@ public class Graph {
 
             result.add(ele);
 
-            for(Node child : this.list.get(ele)){
+            for(Node child : ele.getChildren()){
                 if(!visited.contains(child)){
                     q.add(child);
                     visited.add(child);
@@ -86,7 +90,7 @@ public class Graph {
         result.add(node);
         visited.add(node);
 
-        for(Node child : list.get(node)){
+        for(Node child : node.getChildren()){
             if(!visited.contains(child))
                 getDFSRec(child,visited,result);
         }
@@ -105,12 +109,10 @@ public class Graph {
     private boolean hasCycle(Node node,Set<Node> visiting, Set<Node> visited){
         visiting.add(node);
 
-        if(list.containsKey(node)){
-            for(var child : list.get(node)){
-                if(visiting.contains(child)) return true;
+        for(var child : node.getChildren()){
+            if(visiting.contains(child)) return true;
 
-                if( hasCycle(child,visiting,visited)) return true;
-            }
+            if( hasCycle(child,visiting,visited)) return true;
         }
 
         visiting.remove(node);
@@ -142,8 +144,8 @@ public class Graph {
     public String toString(){
         StringBuilder sb = new StringBuilder();
 
-        for(var entry : list.entrySet()){
-            sb.append(entry.getKey()).append(" -> ").append(entry.getValue()).append("\n");
+        for(var entry : nodes.entrySet()){
+            sb.append(entry.getKey()).append(" -> ").append(entry.getValue().getChildren()).append("\n");
         }
 
         return sb.toString();
