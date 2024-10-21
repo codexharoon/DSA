@@ -1,5 +1,7 @@
 package Graph;
 
+import java.util.Arrays;
+
 public class Main {
     public static void main(String[] args){
 //        Graph graph = new Graph();
@@ -32,16 +34,32 @@ public class Main {
 //
 //        System.out.println(graph.hasCycle());
 
-        DirectedWeightedGraph wGraph = new DirectedWeightedGraph();
+//        DirectedWeightedGraph wGraph = new DirectedWeightedGraph();
+//
+//        var A = wGraph.createNode("A");
+//        var B = wGraph.createNode("B");
+//        var C = wGraph.createNode("C");
+//
+//        wGraph.createConnection(A,B,5);
+//        wGraph.createConnection(A,C,10);
+//        wGraph.createConnection(B,C,5);
+//
+//        System.out.println(wGraph);
 
-        var A = wGraph.createNode("A");
-        var B = wGraph.createNode("B");
-        var C = wGraph.createNode("C");
 
-        wGraph.createConnection(A,B,5);
-        wGraph.createConnection(A,C,10);
-        wGraph.createConnection(B,C,5);
+       int V = 6, E = 7;
+       int [][] edge = new int [][] {
+               {0,1,2},
+               {0,4,1},
+               {4,5,4},
+               {4,2,2},
+               {1,2,3},
+               {2,3,6},
+               {5,3,1},
+       };
 
-        System.out.println(wGraph);
+       GFG gfg = new GFG();
+
+        System.out.println(Arrays.toString(gfg.shortestPath(V,E,edge)));
     }
 }
